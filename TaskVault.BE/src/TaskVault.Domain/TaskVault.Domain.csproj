@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="DotNetCore.Domain" Version="17.115.0" />
+  </ItemGroup>
+	
+  <ItemGroup>
+	<Using Include="DotNetCore.Domain" />
+  </ItemGroup>
+
 </Project>

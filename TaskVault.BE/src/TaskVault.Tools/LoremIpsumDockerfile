@@ -1,0 +1,17 @@
+# Use an official Node.js runtime as the base image
+FROM node:14-slim
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the server.js file with the Node.js code
+COPY server.js .
+
+# Expose port 80 for HTTP traffic
+EXPOSE 80
+
+# Install the 'lorem-ipsum' package for generating Lorem Ipsum text
+RUN npm install lorem-ipsum
+
+# Run the Node.js server script to start the HTTP server
+CMD ["node", "server.js"]

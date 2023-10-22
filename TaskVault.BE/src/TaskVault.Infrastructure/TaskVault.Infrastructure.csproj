@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -7,8 +7,31 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
-    <Folder Include="Services\" />
+    <PackageReference Include="DotNetCore.EntityFrameworkCore" Version="17.115.0" />
+    <PackageReference Include="DotNetCore.Objects" Version="17.115.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TaskVault.Domain\TaskVault.Domain.csproj" />
+    <ProjectReference Include="..\TaskVault.Models\TaskVault.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<Using Include="TaskVault.Domain" />
+	<Using Include="TaskVault.Models" />
+	<Using Include="DotNetCore.EntityFrameworkCore" />
+	<Using Include="DotNetCore.Objects" />
+	<Using Include="DotNetCore.Repositories" />
+	<Using Include="Microsoft.EntityFrameworkCore" />
+	<Using Include="Microsoft.EntityFrameworkCore.Design" />
+	<Using Include="Microsoft.EntityFrameworkCore.Metadata.Builders" />
+	<Using Include="Microsoft.EntityFrameworkCore.SqlServer" />
+	<Using Include="System.Linq.Expressions" />
   </ItemGroup>
 
 </Project>

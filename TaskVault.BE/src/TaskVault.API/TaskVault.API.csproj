@@ -1,22 +1,68 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>d9e3cdfe-300c-4fa7-ab23-d9f41f85de2b</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerfileContext>..\..</DockerfileContext>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>d9e3cdfe-300c-4fa7-ab23-d9f41f85de2b</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerfileContext>..\..</DockerfileContext>
+		<DockerComposeProjectPath>..\..\docker-compose.dcproj</DockerComposeProjectPath>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-  </ItemGroup>
+	<ItemGroup>
+	  <Content Remove="AppSettings.json" />
+	  <Content Remove="AppStrings.json" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="DotNetCore.AspNetCore" Version="17.115.0" />
+		<PackageReference Include="DotNetCore.Logging" Version="17.115.0" />
+		<PackageReference Include="DotNetCore.Services" Version="17.115.0" />
+		<PackageReference Include="Microsoft.AspNetCore.OData" Version="8.2.3" />
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.12">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="AppSettings.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Include="AppStrings.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\TaskVault.Application\TaskVault.Application.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="TaskVault.Application" />
+		<Using Include="TaskVault.Infrastructure.Data" />
+		<Using Include="TaskVault.Models" />
+		<Using Include="DotNetCore.AspNetCore" />
+		<Using Include="DotNetCore.EntityFrameworkCore" />
+		<Using Include="DotNetCore.Extensions" />
+		<Using Include="DotNetCore.IoC" />
+		<Using Include="DotNetCore.Logging" />
+		<Using Include="DotNetCore.Mediator" />
+		<Using Include="DotNetCore.Objects" />
+		<Using Include="DotNetCore.Results" />
+		<Using Include="DotNetCore.Security" />
+		<Using Include="DotNetCore.Services" />
+		<Using Include="Microsoft.AspNetCore.Authorization" />
+		<Using Include="Microsoft.AspNetCore.Mvc" />
+		<Using Include="Microsoft.EntityFrameworkCore" />
+		<Using Include="Microsoft.Extensions.Localization" />
+		<Using Include="Microsoft.OpenApi.Models" />
+		<Using Include="Microsoft.AspNetCore.OData" />
+	</ItemGroup>
 
 </Project>

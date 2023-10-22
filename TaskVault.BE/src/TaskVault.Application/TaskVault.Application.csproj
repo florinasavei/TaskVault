@@ -1,9 +1,32 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetCore.Mediator" Version="17.115.0" />
+    <PackageReference Include="DotNetCore.Security" Version="17.115.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TaskVault.Infrastructure\TaskVault.Infrastructure.csproj" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Using Include="TaskVault.Infrastructure.Data" />
+		<Using Include="TaskVault.Domain" />
+		<Using Include="TaskVault.Models" />
+		<Using Include="DotNetCore.EntityFrameworkCore" />
+		<Using Include="DotNetCore.Extensions" />
+		<Using Include="DotNetCore.Mediator" />
+		<Using Include="DotNetCore.Objects" />
+		<Using Include="DotNetCore.Results" />
+		<Using Include="DotNetCore.Security" />
+		<Using Include="FluentValidation" />
+		<Using Include="System.Security.Claims" />
+	</ItemGroup>
 
 </Project>
