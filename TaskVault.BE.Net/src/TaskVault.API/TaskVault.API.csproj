@@ -63,6 +63,8 @@
 		<Using Include="Microsoft.Extensions.Localization" />
 		<Using Include="Microsoft.OpenApi.Models" />
 		<Using Include="Microsoft.AspNetCore.OData" />
+		<Using Include="Microsoft.OData.ModelBuilder" />
+		<Using Include="TaskVault.Infrastructure.Services" />
 	</ItemGroup>
 
 </Project>

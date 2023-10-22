@@ -1,4 +1,3 @@
-using DotNetCore.Mediator;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using TaskVault.Infrastructure.Services;

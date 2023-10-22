@@ -1,9 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Microsoft.OData.ModelBuilder;
-using TaskVault.Domain;
-using TaskVault.Infrastructure.Services;
-
 var builder = WebApplication.CreateBuilder();
 
 builder.Host.UseSerilog();
@@ -16,6 +10,17 @@ builder.Services.AddAuthorization().AddAuthentication().AddJwtBearer();
 builder.Services.AddContext<Context>(options => options.UseSqlServer(builder.Configuration.GetConnectionString(nameof(Context))));
 builder.Services.AddClassesMatchingInterfaces(nameof(TaskVault));
 builder.Services.AddMediator(nameof(TaskVault));
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin() // Allow requests from this origin
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+});
+
 
 builder.Services.AddHttpClient<IMyHttpClientService, MyHttpClientService>(client =>
 {
@@ -77,6 +82,7 @@ builder.Services.AddControllers()
 
 var app = builder.Build();
 
+app.UseCors();
 app.UseException();
 app.UseHsts().UseHttpsRedirection();
 app.UseLocalization("en", "ro");
