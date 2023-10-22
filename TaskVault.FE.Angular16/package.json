@@ -1,0 +1,16 @@
+{
+  "name": "TaskVault.FE.Angular",
+  "packageManager": "yarn@4.0.0-rc.53",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "devDependencies": {
+    "@angular/cli": "^16.2.7"
+  },
+  "scripts": {
+    "install-yarn": "yarn install",
+    "clean:node_modules": "yarn dlx del-cli \"**/node_modules\" && echo done "
+  }
+}

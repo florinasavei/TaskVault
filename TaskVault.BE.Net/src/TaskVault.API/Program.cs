@@ -11,6 +11,7 @@ builder.Services.AddContext<Context>(options => options.UseSqlServer(builder.Con
 builder.Services.AddClassesMatchingInterfaces(nameof(TaskVault));
 builder.Services.AddMediator(nameof(TaskVault));
 
+// this is just for demo purposes, allowed origins should be configurabe via appsettings
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
