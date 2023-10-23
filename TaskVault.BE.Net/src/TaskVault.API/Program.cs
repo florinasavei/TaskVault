@@ -1,4 +1,18 @@
+using System.Threading.RateLimiting;
+
 var builder = WebApplication.CreateBuilder();
+
+// allow 20 requets per minute per user, return 503 if rate exceeded
+// a smarter way would be to add a messge queue such as RabbitMQ
+builder.Services.AddRateLimiter(options => {
+    options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext => RateLimitPartition.GetFixedWindowLimiter(partitionKey: httpContext.User.Identity?.Name ?? httpContext.Request.Headers.Host.ToString(), factory: partition => new FixedWindowRateLimiterOptions
+    {
+        AutoReplenishment = true,
+        PermitLimit = 20,
+        QueueLimit = 0,
+        Window = TimeSpan.FromMinutes(1)
+    }));
+});
 
 builder.Host.UseSerilog();
 
@@ -83,6 +97,7 @@ builder.Services.AddControllers()
 
 var app = builder.Build();
 
+app.UseRateLimiter();
 app.UseCors();
 app.UseException();
 app.UseHsts().UseHttpsRedirection();

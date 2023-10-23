@@ -65,6 +65,7 @@
 		<Using Include="Microsoft.AspNetCore.OData" />
 		<Using Include="Microsoft.OData.ModelBuilder" />
 		<Using Include="TaskVault.Infrastructure.Services" />
+		<Using Include="System.Threading.RateLimiting" />
 	</ItemGroup>
 
 </Project>
