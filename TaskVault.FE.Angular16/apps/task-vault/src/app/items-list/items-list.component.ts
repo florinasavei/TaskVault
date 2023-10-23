@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ItemsService } from '../services/items.service';
+import { Item } from '../models/item';
 
 @Component({
   selector: 'app-items-list',
@@ -9,21 +10,21 @@ import { ItemsService } from '../services/items.service';
 export class ItemsListComponent {
 
   // TODO: add Typescript interface here
-  items: string = "";
+  items: Item[] = [];
 
   constructor(private dataService: ItemsService) { }
 
-  ngOnInit(): void {
-    // Initialization logic goes here
-    this.dataService.list().subscribe(
-      response => {
-        this.items = JSON.stringify(response)
-      },
-      error => {
-        console.error('Error in POST request:', error);
-        // Handle errors
-      }
-    );
+  ngOnInit() {
+    this.refreshList();
+    this.dataService.onListUpdated().subscribe(() => {
+      this.refreshList();
+    });
+  }
+
+  refreshList() {
+    this.dataService.list().subscribe((data) => {
+      this.items = data as Item[];
+    });
   }
 
 }

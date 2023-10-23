@@ -4,32 +4,16 @@ import { ItemsService } from '../services/items.service';
 @Component({
   selector: 'app-item-create',
   templateUrl: './item-create.component.html',
-  styleUrls: ['./item-create.component.scss']
+  styleUrls: ['./item-create.component.scss'],
 })
 export class ItemCreateComponent {
-
-  constructor(private dataService: ItemsService) { }
-
   // TODO: add Typescript interface here
-  items: string = "";
-
   name: string = '';
+  constructor(private dataService: ItemsService) {}
 
   onSubmit() {
+    const dataToSend = { name: this.name };
 
-    const dataToSend = { name: this.name};
-
-    this.dataService.create(dataToSend).subscribe(
-      response => {
-        console.log('POST request successful:', response);
-        this.items = JSON.stringify(response)
-      },
-      error => {
-        console.error('Error in POST request:', error);
-        // Handle errors
-      }
-    );
-
+    this.dataService.create(dataToSend);
   }
-
 }
