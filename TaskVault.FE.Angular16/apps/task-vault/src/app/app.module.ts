@@ -9,13 +9,15 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { JwtInterceptor } from './services/jwt.interceptor';
 import { ItemsListComponent } from './items-list/items-list.component';
 import { ItemCreateComponent } from './item-create/item-create.component';
+import { ItemComponent } from './item/item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ItemsListComponent,
-    ItemCreateComponent
+    ItemCreateComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,
