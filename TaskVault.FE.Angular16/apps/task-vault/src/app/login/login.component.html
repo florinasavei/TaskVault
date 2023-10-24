@@ -1,15 +1,38 @@
-<div class="login-form">
-  <h2>Login</h2>
+<div>
   <form (ngSubmit)="onSubmit()" *ngIf="!loginSuccess && !JWT">
+    <h2>Login</h2>
     <div class="form-group">
       <label for="username">Username:</label>
-      <input type="text" id="username" name="username" [(ngModel)]="username" required>
+      <input
+      pInputText
+      id="username"
+      name="username"
+      ngDefaultControl
+      [(ngModel)]="username"
+      required
+      type="text"
+    />
+
     </div>
     <div class="form-group">
       <label for="password">Password:</label>
-      <input type="password" id="password" name="password" [(ngModel)]="password" required>
+      <input
+        pInputText
+        id="password"
+        name="password"
+        ngDefaultControl
+        [(ngModel)]="password"
+        required
+        type="password"
+      />
     </div>
-    <button type="submit">Login</button>
+    <button pButton type="submit" label="Login"></button>
   </form>
-  <button *ngIf="loginSuccess || JWT">Logount</button>
+  <button
+    *ngIf="loginSuccess || JWT"
+    pButton
+    type="button"
+    label="Logount"
+    (click)="logout()"
+  ></button>
 </div>

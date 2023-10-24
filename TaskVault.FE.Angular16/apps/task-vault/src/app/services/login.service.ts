@@ -19,8 +19,12 @@ export class AuthService {
   }
 
   login(data: any) {
-    this.isLoggedIn.next(true);
-    return this.http.post(this.apiUrl, data);
+    const response = this.http.post(this.apiUrl, data);
+    response.subscribe((r)=>{
+      this.isLoggedIn.next(true);
+
+    })
+    return response
   }
 
   logout() {

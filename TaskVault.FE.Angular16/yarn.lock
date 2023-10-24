@@ -7239,6 +7239,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"primeng@npm:^16.5.1":
+  version: 16.5.1
+  resolution: "primeng@npm:16.5.1"
+  dependencies:
+    tslib: "npm:^2.3.0"
+  peerDependencies:
+    "@angular/common": ^16.2.0
+    "@angular/core": ^16.2.0
+    "@angular/forms": ^16.2.0
+    rxjs: ^6.0.0 || ^7.8.1
+    zone.js: ~0.13.0
+  checksum: 5bffa2fe091e8892d51dbdedbc4ef48066c01f31d2c3c533019bc8da207cdda4dc3fbc1278d90bacf1427f3348210b6febbeefe1a0fb52c237d941147fbd90d6
+  languageName: node
+  linkType: hard
+
 "proc-log@npm:^3.0.0":
   version: 3.0.0
   resolution: "proc-log@npm:3.0.0"
@@ -8388,6 +8403,7 @@ __metadata:
     karma-jasmine: "npm:~5.1.0"
     karma-jasmine-html-reporter: "npm:~2.1.0"
     kill-port: "npm:^2.0.1"
+    primeng: "npm:^16.5.1"
     rxjs: "npm:~7.8.0"
     tslib: "npm:^2.3.0"
     typescript: "npm:~5.1.3"

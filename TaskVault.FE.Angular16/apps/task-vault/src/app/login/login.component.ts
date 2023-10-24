@@ -1,18 +1,16 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/login.service';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-
   loginSuccess: boolean | null = null;
-  JWT: string = "";
+  JWT: string = '';
 
-  constructor(private dataService: AuthService) { }
+  constructor(private dataService: AuthService) {}
 
   username: string = '';
   password: string = '';
@@ -21,30 +19,41 @@ export class LoginComponent {
     this.dataService.onLogin().subscribe((loginSuccess) => {
       this.loginSuccess = loginSuccess;
     });
-    this.JWT = localStorage.getItem('JWT') ?? ""
+    this.JWT = localStorage.getItem('JWT') ?? '';
   }
 
   onSubmit() {
-    const dataToSend = { username: this.username, password: this.password};
+    const dataToSend = { username: this.username, password: this.password };
 
     this.dataService.login(dataToSend).subscribe(
-      response => {
+      (response) => {
         console.log('POST request successful:', response);
-        const token = (response as {token: string}).token
-        alert("Login successful")
-        localStorage.setItem('JWT', token);
-        this.JWT = token;
+        if (response) {
+          const token = (response as { token: string }).token;
+          console.log('token', token);
+          localStorage.setItem('JWT', token);
+          this.JWT = token;
+        }
       },
-      error => {
+      (error) => {
         console.error('Error in POST request:', error);
-        alert(error)
+        alert(error.error);
         // Handle errors
-        this.dataService.logout()
-        localStorage.removeItem("JWT");
-        this.JWT = "";
+        this.dataService.logout();
+        localStorage.removeItem('JWT');
+        this.JWT = '';
       }
     );
 
-    console.log('Submitted: Username - ' + this.username + ', Password - ' + this.password);
+    console.log(
+      'Submitted: Username - ' + this.username + ', Password - ' + this.password
+    );
+  }
+
+  logout() {
+    console.log('logged out');
+    this.dataService.logout();
+    localStorage.removeItem('JWT');
+    this.JWT = '';
   }
 }

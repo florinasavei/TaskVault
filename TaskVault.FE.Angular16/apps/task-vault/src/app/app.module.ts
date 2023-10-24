@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +11,8 @@ import { JwtInterceptor } from './services/jwt.interceptor';
 import { ItemsListComponent } from './items-list/items-list.component';
 import { ItemCreateComponent } from './item-create/item-create.component';
 import { ItemComponent } from './item/item.component';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -21,9 +24,12 @@ import { ItemComponent } from './item/item.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ButtonModule,
+    InputTextModule
   ],
   providers: [    {
     provide: HTTP_INTERCEPTORS,
