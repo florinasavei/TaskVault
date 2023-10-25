@@ -10,16 +10,27 @@ export class ItemsService {
 
   private apiUrl = 'http://localhost:8080/api/Items';
 
-  // Create a Subject to notify subscribers when the list changes
+  private listInit = new Subject<void>();
   private listUpdated = new Subject<void>();
 
-  // This method will allow components to subscribe to list updates
+  onListInit() {
+    return this.listInit.asObservable();
+  }
   onListUpdated() {
     return this.listUpdated.asObservable();
   }
 
   create(data: any) {
+    this.listInit.next();
     return this.http.post(this.apiUrl, data).subscribe(() => {
+      // After successfully adding a new item, notify subscribers
+      this.listUpdated.next();
+    });
+  }
+
+  delete(id: number) {
+    this.listInit.next();
+    return this.http.delete(`${this.apiUrl}/${id}`).subscribe(() => {
       // After successfully adding a new item, notify subscribers
       this.listUpdated.next();
     });

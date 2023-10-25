@@ -1,6 +1,18 @@
-<div>
-  <p>Name: {{item.name}}</p>
+<div class="item">
+  <div class="item__header">
+    <p>Name: {{ item.name }}</p>
+    <i class="pi pi-trash item__header__action" (click)="delete()"></i>
+  </div>
   <!-- <p>{{item.progress}}</p> -->
-  <p *ngIf="item.details">Summary: {{item.details}}</p>
-  <button pButton type="button" label="Get Summary" (click)="getDetails()" [disabled]="areDetailsLoading"></button>
+  <div>
+    <p *ngIf="item.details">Summary: {{ item.details }}</p>
+    <p-button
+      type="button"
+      label="Get Summary"
+      (click)="getDetails()"
+      size="small"
+      [disabled]="areDetailsLoading"
+    >
+    </p-button>
+  </div>
 </div>

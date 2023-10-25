@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ItemsService } from '../services/items.service';
 import { Item } from '../models/item';
 
@@ -11,6 +11,8 @@ export class ItemsListComponent {
   items: Item[] | undefined = undefined;
   isLoadingData: boolean = true;
 
+  @ViewChild('dataView') dataView!: any;
+
   pageSize: number = 5;
   itemsLength: number = 0;
   get numberOfPages(): number {
@@ -20,8 +22,13 @@ export class ItemsListComponent {
 
   ngOnInit() {
     this.loadData(0, 1);
+    this.dataService.onListInit().subscribe(() => {
+      this.isLoadingData = true;
+    });
     this.dataService.onListUpdated().subscribe(() => {
       this.loadData(0, 1);
+      this.dataView.first = 0;
+      this.isLoadingData = false;
     });
   }
 

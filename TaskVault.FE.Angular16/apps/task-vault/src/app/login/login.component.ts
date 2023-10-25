@@ -8,7 +8,10 @@ import { AuthService } from '../services/login.service';
 })
 export class LoginComponent {
   loginSuccess: boolean | null = null;
-  JWT: string = '';
+
+  get JWT(): string {
+    return localStorage.getItem('JWT') ?? '';
+  }
 
   constructor(private dataService: AuthService) {}
 
@@ -19,7 +22,6 @@ export class LoginComponent {
     this.dataService.onLogin().subscribe((loginSuccess) => {
       this.loginSuccess = loginSuccess;
     });
-    this.JWT = localStorage.getItem('JWT') ?? '';
   }
 
   onSubmit() {
@@ -27,12 +29,10 @@ export class LoginComponent {
 
     this.dataService.login(dataToSend).subscribe(
       (response) => {
-        console.log('POST request successful:', response);
         if (response) {
           const token = (response as { token: string }).token;
           console.log('token', token);
           localStorage.setItem('JWT', token);
-          this.JWT = token;
         }
       },
       (error) => {
@@ -41,7 +41,6 @@ export class LoginComponent {
         // Handle errors
         this.dataService.logout();
         localStorage.removeItem('JWT');
-        this.JWT = '';
       }
     );
 
@@ -54,6 +53,5 @@ export class LoginComponent {
     console.log('logged out');
     this.dataService.logout();
     localStorage.removeItem('JWT');
-    this.JWT = '';
   }
 }

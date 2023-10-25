@@ -20,6 +20,11 @@ export class ItemComponent {
     });
   }
 
+  delete() {
+    this.dataService.delete(this.item.id)
+  }
+
+
   @Input() item: Item = {
     id: 0,
     name: '',

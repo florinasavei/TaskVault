@@ -1,0 +1,14 @@
+.item {
+  border: 1px solid gray;
+  border-radius: 12px;
+  padding: .5rem;
+  margin: .5rem;
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    &__action {
+      cursor: pointer;
+    }
+  }
+}

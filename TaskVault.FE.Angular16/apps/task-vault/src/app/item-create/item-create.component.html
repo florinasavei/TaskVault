@@ -1,11 +1,18 @@
-<div >
-  <h2>Create Item</h2>
+<div>
+  <h2>Add Item</h2>
   <form (ngSubmit)="onSubmit()">
-      <label for="name">Name:</label>
-      <input class="input" type="text" id="name" name="name" [(ngModel)]="name" required>
-      <p-button type="submit" [disabled]="isLoading">
-        <span *ngIf="isLoading">Creating...</span>
-        <span *ngIf="!isLoading">Create</span>
-      </p-button>
+    <label for="name">Name:</label>
+    <input
+      class="input"
+      type="text"
+      id="name"
+      name="name"
+      [(ngModel)]="name"
+      required
+    />
+    <p-button type="submit" [disabled]="isLoading" size="small">
+      <span *ngIf="isLoading">Adding...</span>
+      <span *ngIf="!isLoading">Add</span>
+    </p-button>
   </form>
 </div>
