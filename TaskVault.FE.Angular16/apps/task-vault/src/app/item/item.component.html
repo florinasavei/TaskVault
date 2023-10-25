@@ -1,6 +1,6 @@
-
 <div>
-  <p>{{item.name}}</p>
-  <p>{{item.progress}}</p>
-  <button pButton type="button" label="Get Summary"></button>
+  <p>Name: {{item.name}}</p>
+  <!-- <p>{{item.progress}}</p> -->
+  <p *ngIf="item.details">Summary: {{item.details}}</p>
+  <button pButton type="button" label="Get Summary" (click)="getDetails()" [disabled]="areDetailsLoading"></button>
 </div>

@@ -7,4 +7,6 @@ public interface IItemRepository : IRepository<Item>
     Task<Grid<ItemModel>> GridAsync(GridParameters parameters);
 
     Task<IEnumerable<ItemModel>> ListModelAsync();
+
+    int CountModel();
 }

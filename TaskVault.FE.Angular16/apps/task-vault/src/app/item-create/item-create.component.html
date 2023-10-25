@@ -1,8 +1,11 @@
 <div >
   <h2>Create Item</h2>
   <form (ngSubmit)="onSubmit()">
-      <label for="name">name:</label>
-      <input type="text" id="name" name="name" [(ngModel)]="name" required>
-    <button type="submit">Create</button>
+      <label for="name">Name:</label>
+      <input class="input" type="text" id="name" name="name" [(ngModel)]="name" required>
+      <p-button type="submit" [disabled]="isLoading">
+        <span *ngIf="isLoading">Creating...</span>
+        <span *ngIf="!isLoading">Create</span>
+      </p-button>
   </form>
 </div>

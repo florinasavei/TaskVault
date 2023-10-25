@@ -25,7 +25,15 @@ export class ItemsService {
     });
   }
 
-  list() {
-    return this.http.get(this.apiUrl);
+  count() {
+    return this.http.get(`${this.apiUrl}/count`);
+  }
+
+  list(index: number, pageSize: number) {
+    return this.http.get(`${this.apiUrl}?$skip=${index}&$top=${pageSize}`);
+  }
+
+  summary(id:number) {
+    return this.http.get(this.apiUrl + "/" + id + "/details");
   }
 }

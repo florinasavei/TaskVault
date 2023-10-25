@@ -7,13 +7,20 @@ import { ItemsService } from '../services/items.service';
   styleUrls: ['./item-create.component.scss'],
 })
 export class ItemCreateComponent {
-  // TODO: add Typescript interface here
+  // TODO: add Typescript interface here for all the fields
   name: string = '';
+  isLoading: boolean = false;
   constructor(private dataService: ItemsService) {}
 
-  onSubmit() {
-    const dataToSend = { name: this.name };
+  ngOnInit() {
+    this.dataService.onListUpdated().subscribe(() => {
+      this.isLoading = false;
+    });
+  }
 
+  onSubmit() {
+    this.isLoading = true;
+    const dataToSend = { name: this.name };
     this.dataService.create(dataToSend);
   }
 }

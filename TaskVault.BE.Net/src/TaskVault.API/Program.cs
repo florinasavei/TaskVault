@@ -8,7 +8,7 @@ builder.Services.AddRateLimiter(options => {
     options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext => RateLimitPartition.GetFixedWindowLimiter(partitionKey: httpContext.User.Identity?.Name ?? httpContext.Request.Headers.Host.ToString(), factory: partition => new FixedWindowRateLimiterOptions
     {
         AutoReplenishment = true,
-        PermitLimit = 20,
+        PermitLimit = 200,
         QueueLimit = 0,
         Window = TimeSpan.FromMinutes(1)
     }));
@@ -89,7 +89,7 @@ modelBuilder.EntitySet<ItemModel>("Items");
 
 builder.Services.AddControllers()
     .AddOData(
-        options => options.Select().Filter().Count().OrderBy().Expand()
+        options => options.Select().Filter().Count().OrderBy().Expand().SetMaxTop(100)
         )
     .AddJsonOptions()
     .AddAuthorizationPolicy();

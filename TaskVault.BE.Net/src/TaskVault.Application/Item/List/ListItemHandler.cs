@@ -1,3 +1,4 @@
+using TaskVault.Domain;
 using static System.Net.HttpStatusCode;
 
 namespace TaskVault.Application;

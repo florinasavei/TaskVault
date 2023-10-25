@@ -19,7 +19,7 @@ public sealed record AddItemHandler : IHandler<AddItemRequest, long>
 
     public async Task<Result<long>> HandleAsync(AddItemRequest request)
     {
-        var entity = new Item(request.Name);
+        var entity = new Item(request.Name, request.Priority);
 
         await _ItemRepository.AddAsync(entity);
 

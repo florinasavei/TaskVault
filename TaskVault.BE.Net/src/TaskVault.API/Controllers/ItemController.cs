@@ -61,6 +61,9 @@ public sealed class ItemController : ODataController
     [EnableQuery]
     public async Task<IActionResult> List() => (await _mediator.HandleAsync<ListItemRequest, IEnumerable<ItemModel>>(new ListItemRequest())).ApiResult();
 
+    [HttpGet("count")]
+    public async Task<IActionResult> Count() => (await _mediator.HandleAsync<CountItemsRequest, int>(new CountItemsRequest())).ApiResult();
+
 
     [HttpPut("{id:long}")]
     public IActionResult Update(long id, UpdateItemRequest request)

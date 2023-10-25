@@ -17,4 +17,6 @@ public sealed class ItemRepository : EFRepository<Item>, IItemRepository
     public Task<Grid<ItemModel>> GridAsync(GridParameters parameters) => Queryable.Select(Model).GridAsync(parameters);
 
     public async Task<IEnumerable<ItemModel>> ListModelAsync() => await Queryable.Select(Model).ToListAsync();
+
+    public int CountModel() =>  Queryable.Select(Model).Count();
 }

@@ -13,6 +13,9 @@ import { ItemCreateComponent } from './item-create/item-create.component';
 import { ItemComponent } from './item/item.component';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { DataViewModule } from 'primeng/dataview';
+import { TagModule } from 'primeng/tag';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { InputTextModule } from 'primeng/inputtext';
     FormsModule,
     AppRoutingModule,
     ButtonModule,
-    InputTextModule
+    InputTextModule,
+    DataViewModule,
+    TagModule
   ],
   providers: [    {
     provide: HTTP_INTERCEPTORS,

@@ -1,5 +1,18 @@
-<ul>
-  <li *ngFor="let item of items">
-    <app-item [item]="item"></app-item>
-  </li>
-</ul>
+<div class="list">
+  <p-dataView
+    #dv
+    [value]="items"
+    [rows]="pageSize"
+    [totalRecords]="itemsLength"
+    [pageLinks]="numberOfPages"
+    [lazy]="true"
+    [paginator]="true"
+    [alwaysShowPaginator]="true"
+    (onPage)="loadData($event.first, $event.rows)"
+    [loading]="isLoadingData"
+  >
+    <ng-template let-item pTemplate="listItem">
+       <app-item [item]="item"></app-item>
+    </ng-template>
+  </p-dataView>
+</div>
